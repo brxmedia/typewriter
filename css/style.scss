@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap');
+
+html,
+body {
+    height: 100%;
+}
+body {
+    background: #153144;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-family: "Roboto Mono", monospace;
+    width: max-content;
+
+    &::before{
+        content: '';
+        
+    }
+}
