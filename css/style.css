@@ -11,16 +11,49 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 h1 {
   font-family: "Roboto Mono", monospace;
   width: max-content;
+  position: relative;
+}
+
+h1::before, h1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 h1::before {
-  content: '';
+  background-color: #153144;
+  animation: typewriter 6s steps(23) 1.5s forwards;
+}
+
+h1::after {
+  background-color: #fff;
+  width: 0.0675em;
+  animation: typewriter 6s steps(23) 1.5s forwards, blink 0.75s 2 linear forwards, blink 0.75s linear 7.5s infinite;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  0%,
+100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

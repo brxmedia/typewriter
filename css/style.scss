@@ -1,25 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Mono:wght@300&display=swap");
+
+$BackgroundColor: #153144;
+$TextColor: #fff;
+
+$Characters: 23;
+$TypeSpeed: 6s;
+$CursorSpeed: 0.75s;
 
 html,
 body {
     height: 100%;
 }
 body {
-    background: #153144;
-    color: #fff;
+    background: $BackgroundColor;
+    color: $TextColor;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 h1 {
     font-family: "Roboto Mono", monospace;
     width: max-content;
+    position: relative;
 
-    &::before{
-        content: '';
-        
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &::before {
+        background-color: $BackgroundColor;
+
+        animation: typewriter $TypeSpeed steps($Characters) #{2 * $CursorSpeed} forwards;
+    }
+    &::after {
+        background-color: $TextColor;
+        width: 0.0675em;
+
+        animation: typewriter $TypeSpeed steps($Characters) #{2 * $CursorSpeed} forwards,
+            blink $CursorSpeed 2 linear forwards, 
+            blink $CursorSpeed linear #{2 * $CursorSpeed + $TypeSpeed} infinite;
+    }
+}
+
+@keyframes typewriter {
+    to {
+        left: 100%;
+    }
+}
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
     }
 }
