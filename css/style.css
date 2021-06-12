@@ -2,6 +2,7 @@
 html,
 body {
   height: 100%;
+  margin: 0;
 }
 
 body {
@@ -16,6 +17,8 @@ body {
 
 h1 {
   font-family: "Roboto Mono", monospace;
+  font-size: calc(1.5em + 2.6vw);
+  font-weight: 400;
   width: max-content;
   position: relative;
 }
@@ -31,13 +34,20 @@ h1::before, h1::after {
 
 h1::before {
   background-color: #153144;
-  animation: typewriter 6s steps(23) 1.5s forwards;
+  animation: typewriter 4s steps(23) 1.5s forwards;
 }
 
 h1::after {
   background-color: #fff;
   width: 0.0675em;
-  animation: typewriter 6s steps(23) 1.5s forwards, blink 0.75s 2 linear forwards, blink 0.75s linear 7.5s infinite;
+  animation: typewriter 4s steps(23) 1.5s forwards, blink 1.5s linear forwards, blink 1.5s linear 5.5s infinite;
+}
+
+p {
+  font-size: calc(1.25em + .75vw);
+  opacity: 0;
+  transform: translateY(5em);
+  animation: fadeIn 0.5s ease 6s forwards;
 }
 
 @keyframes typewriter {
@@ -48,11 +58,20 @@ h1::after {
 
 @keyframes blink {
   0%,
+50%,
 100% {
     opacity: 1;
   }
-  50% {
+  25%,
+75% {
     opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

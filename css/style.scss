@@ -4,12 +4,13 @@ $BackgroundColor: #153144;
 $TextColor: #fff;
 
 $Characters: 23;
-$TypeSpeed: 6s;
-$CursorSpeed: 0.75s;
+$TypeSpeed: 4s;
+$CursorSpeed: 1.5s;
 
 html,
 body {
     height: 100%;
+    margin: 0;
 }
 body {
     background: $BackgroundColor;
@@ -23,6 +24,8 @@ body {
 
 h1 {
     font-family: "Roboto Mono", monospace;
+    font-size: calc(1.5em + 2.6vw);
+    font-weight: 400;
     width: max-content;
     position: relative;
 
@@ -39,16 +42,23 @@ h1 {
     &::before {
         background-color: $BackgroundColor;
 
-        animation: typewriter $TypeSpeed steps($Characters) #{2 * $CursorSpeed} forwards;
+        animation: typewriter $TypeSpeed steps($Characters) #{$CursorSpeed} forwards;
     }
     &::after {
         background-color: $TextColor;
         width: 0.0675em;
 
-        animation: typewriter $TypeSpeed steps($Characters) #{2 * $CursorSpeed} forwards,
-            blink $CursorSpeed 2 linear forwards, 
-            blink $CursorSpeed linear #{2 * $CursorSpeed + $TypeSpeed} infinite;
+        animation: typewriter $TypeSpeed steps($Characters) #{$CursorSpeed} forwards,
+            blink $CursorSpeed linear forwards, blink $CursorSpeed linear #{$CursorSpeed + $TypeSpeed} infinite;
     }
+}
+
+p{
+    font-size: calc(1.25em + .75vw );
+    opacity: 0;
+    transform: translateY(5em);
+
+    animation: fadeIn .5s ease #{$CursorSpeed + $TypeSpeed + .5s} forwards;
 }
 
 @keyframes typewriter {
@@ -58,10 +68,19 @@ h1 {
 }
 @keyframes blink {
     0%,
+    50%,
     100% {
         opacity: 1;
     }
-    50% {
+    25%,
+    75% {
         opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    to{
+        opacity: 1;
+        transform: translateY(0);
     }
 }
